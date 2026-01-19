@@ -1,6 +1,6 @@
 # Driver para Dispositivo de Caracter
 
-Ejemplo para creación de un driver de dispositivo de caracteres simple.
+Ejemplo de un driver de dispositivo de caracteres simple.
 
 ## Compilación del Driver
 Para compilar el driver usa el comando:
