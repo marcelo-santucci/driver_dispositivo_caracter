@@ -2,7 +2,8 @@
 
 Ejemplo para creación de un driver de dispositivo de caracteres simple.
 
-## Compilación del Driver:
+## Compilación del Driver
+Para compilar el driver usa el comando:
 + make
 
 El proceso de compilación debe funcionar y no generar ningún error.  Luego puedes efectuar la verificación de que el proceso de compilación haya generado los archivos de resultado, deber encontrar un archivo con nombre "driver_dispositivo_simple_de_caracter.ko" al ejecutar el comando:
@@ -40,22 +41,6 @@ Para escribir algo dentro del dispositivo (archivo) puedes hacer uso del comando
 Para verificar si efectivamente se consiguió escribir algo en el driver ejecuta el comando:
 +cat /dev/driver_dispositivo_simple_de_caracter
 
-```c
-
-struct values{
-  float num1;
-  float num2;
-  char operation;
-};
-
-/*Programa, versión y definición de procedimiento*/
-
-program CALCULADORA{
-  version CALCULADORA_VERS{
-  float ADD(values)=1;
-  float SUB(values)=2;
-  float MUL(values)=3;
-  float DIV(values)=4;
-  } = 6; 
-} = 456123789;
-```
+### Desinstalación del Driver
+Para desinstalar el driver se hace uso del comando:
++sudo rmmod driver_dispositivo_simple_de_caracter
