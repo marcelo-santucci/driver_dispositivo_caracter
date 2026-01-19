@@ -11,7 +11,7 @@ A continuación podras efectuar el proceso de compilación, carga y verificació
 ## Compilación del Driver
 
 Primero debes preparar el ambiente para poder compilar el Driver, para ello debes instalar los paquetes y librerias necesarias a la versión de sistema operativo donde estas trabajando, mediante el comando:
-+sudo apt-get install build-essential linux-headers-$(uname -r)
++ sudo apt-get install build-essential linux-headers-$(uname -r)
 
 Para compilar el driver usa el comando:
 + make
