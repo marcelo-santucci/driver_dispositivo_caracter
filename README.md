@@ -6,7 +6,7 @@ Un controlador de dispositivo funciona como un traductor entre el sistema operat
 + Controladores de bloque: Trabajan con dispositivos que gestionan bloques de datos, como discos duros.
 + Controladores de red: Gestionan la comunicación entre el sistema operativo y los dispositivos de red.
 
-A continuación podras efectuar el proceso de compilación, carga y verificación de un Driver para con Controlador de caracteres.
+A continuación podras efectuar el proceso de compilación, carga y verificación de un Driver para con Controlador de caracteres simple.
 
 ## Compilación del Driver
 
