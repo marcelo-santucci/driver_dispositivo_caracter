@@ -1,0 +1,142 @@
+obj-m += mychardev.o
+
+¿Qué hace?
+
+Esto le indica al sistema de compilación del kernel de Linux (Kbuild):
+
+“Construir mychardev.o como un módulo del kernel cargable”.
+
+¿Por qué obj-m?
+
+obj-m → objetos de módulo (genera .ko)
+
+obj-y → se integra directamente en el kernel
+
+¿Qué se genera?
+midispositivodecaracter.c → midispositivodecaracter.o → midispositivodecaracter.ko
+
+¿Por qué .o y no .c?
+
+Kbuild trabaja con archivos objeto. Sabe cómo compilar .c en .o.
+
+KDIR := /lib/modules/$(shell uname -r)/build
+¿Qué hace?
+
+Define la variable KDIR como la ruta al directorio de compilación del kernel para el kernel que se está ejecutando.
+
+Desglosándolo
+/lib/modules/
+
+Contiene módulos para cada kernel instalado.
+
+$(shell uname -r)
+
+Ejecuta el comando de shell uname -r
+
+Devuelve la versión del kernel, p. ej.:
+
+6.5.0-21-generic
+
+/build
+
+Un enlace simbólico al árbol de compilación/fuente del kernel:
+
+/usr/src/linux-headers-6.5.0-21-generic/
+
+¿Por qué es necesario?
+
+Debes compilar los módulos con la versión exacta del kernel donde los cargarás.
+
+PWD := $(shell pwd)
+¿Qué hace?
+
+Almacena la ruta del directorio actual (donde se encuentra el código fuente del módulo).
+
+Ejemplo:
+
+/home/user/midispositivodecaracter
+
+¿Por qué es importante?
+
+Estás realizando una compilación fuera del árbol:
+
+El código fuente del kernel está en otro lugar
+
+El código fuente de tu módulo está aquí
+
+El sistema de compilación del kernel necesita saber dónde se encuentra tu módulo.
+
+all:
+Qué es
+
+Un destino Makefile.
+
+¿Por qué all?
+
+Objetivo predeterminado al ejecutar:
+
+make
+
+Usado convencionalmente para compilar todo:
+
+$(MAKE) -C $(KDIR) M=$(PWD) módulos
+
+Esta es la línea más importante.
+
+$(MAKE)
+
+Invoca make recursivamente.
+
+¿Por qué no solo make?
+
+$(MAKE) conserva indicadores como -j (compilaciones paralelas).
+
+-C $(KDIR)
+
+Indica a make:
+
+"Cambia el directorio al directorio de compilación del kernel antes de hacer nada".
+
+Así, make se comporta como si se ejecutara internamente:
+
+/lib/modules/<kernel-version>/build
+
+M=$(PWD)
+
+Pasa una variable al Makefile del kernel:
+
+"El código fuente del módulo está en este directorio".
+
+Esto activa la compilación externa del módulo.
+
+Dentro del sistema de compilación del kernel:
+
+Busca un Makefile en M
+
+Lee obj-m += midispositivodecaracter.o
+
+Construye el módulo
+
+modules
+
+Un objetivo de compilación del kernel.
+
+Indica a Kbuild:
+
+“Construye todos los módulos cargables listados en obj-m”.
+
+clean:
+Qué es
+
+Otro objetivo de Makefile.
+
+Se invoca con:
+
+make clean
+
+$(MAKE) -C $(KDIR) M=$(PWD) clean
+Qué hace
+
+Solicita al sistema de compilación del kernel:
+
+“Eliminar todos los archivos generados para este módulo externo”.
