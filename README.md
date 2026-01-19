@@ -9,6 +9,9 @@ Un controlador de dispositivo funciona como un traductor entre el sistema operat
 A continuación podras efectuar el proceso de compilación, carga y verificación de un Driver para con Controlador de caracteres.
 
 ## Compilación del Driver
+Primero debes preparar el ambiente para poder compilar el Driver, para ello debes instalar los paquetes y librerias necesarias a la versión de sistema operativo donde estas trabajando, mediante el comando:
++sudo apt-get install build-essential linux-headers-$(uname -r)
+
 Para compilar el driver usa el comando:
 + make
 
