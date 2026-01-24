@@ -26,31 +26,31 @@ Tu sistema operativo ya tiene cargados varios drivers, para listarlos ejecuta el
 
 ### Instalación del Driver
 Para instalar el driver que acabas de crear ejecuta el comando:
-+sudo insmod driver_dispositivo_simple_de_caracter.ko
++ sudo insmod driver_dispositivo_simple_de_caracter.ko
 
 Luego verifica nuevamente los drivers que esten cargados ahora en el sistema mediante el comando:
-+cat /proc/devices
++ cat /proc/devices
 
 ### Creación del dispositivo 
 Para poder acceder a un dispositivo que haga uso del driver.  Primero, se crea el archivo del dispositivo dentro el directorio /dev
 mediante el comando que se muestra a continuación donde el parámetro <Max_number> se determina de la información desplegada con el último comando.
 
-+sudo mknod /dev/driver_dispositivo_simple_de_caracter c <Max_Number> 0
++ sudo mknod /dev/driver_dispositivo_simple_de_caracter c <Max_Number> 0
 
 ### Escritura en el dispositivo
 Antes de poder escribir algo en el dispositivo necesitas verificar los permisos del archivo mediante el comando:
-+ls -ltrh /dev/driver_dispositivo_simple_de_caracter
++ ls -ltrh /dev/driver_dispositivo_simple_de_caracter
 
 ¿Que permisos notas que tiene el archivo?  Antes de poder escribir en el necesitas modificar los permisos mediante el comando:
-+sudo chmod 666 /dev/driver_dispositivo_simple_de_caracter
++ sudo chmod 666 /dev/driver_dispositivo_simple_de_caracter
 
 #### Escribir en el dispositivo
 Para escribir algo dentro del dispositivo (archivo) puedes hacer uso del comando:
-+echo 'Hola Dispositivo' > /dev/driver_dispositivo_simple_de_caracter
++ echo 'Hola Dispositivo' > /dev/driver_dispositivo_simple_de_caracter
 
 Para verificar si efectivamente se consiguió escribir algo en el driver ejecuta el comando:
-+cat /dev/driver_dispositivo_simple_de_caracter
++ cat /dev/driver_dispositivo_simple_de_caracter
 
 ### Desinstalación del Driver
 Para desinstalar el driver se hace uso del comando:
-+sudo rmmod driver_dispositivo_simple_de_caracter
++ sudo rmmod driver_dispositivo_simple_de_caracter
